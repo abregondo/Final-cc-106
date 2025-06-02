@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TokMarket - eCommerce</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+</head>
+  
+<body>
+  <header>
+    <h1 class="logo">TokMarket</h1>
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="categories.html" class="active">Categories</a></li>
+        <li><a href="profile.html">Profile</a></li>
+        <li><i id="cart-icon" class="fa-solid fa-cart-shopping"></i></li>
+      </ul>
+    </nav>
+  </header>
+
+  <section class="categories">
+    <h2>Shop by Category</h2>
+    <div class="category-grid">
+      <a href="clothing.html" class="category-box">
+        <i class="fa-solid fa-shirt"></i>
+        <p>Clothing</p>
+      </a>
+      <a href="electronics.html" class="category-box">
+        <i class="fa-solid fa-laptop"></i>
+        <p>Electronics</p>
+      </a>
+      <a href="home.html" class="category-box">
+        <i class="fa-solid fa-couch"></i>
+        <p>Home & Living</p>
+      </a>
+      <a href="sports.html" class="category-box">
+        <i class="fa-solid fa-basketball"></i>
+        <p>Sports</p>
+      </a>
+      <a href="Accessories.html" class="category-box">
+        <i class="fa-solid fa-gift"></i>
+        <p>Accessories</p>
+      </a>
+    </div>
+  </section>
+
+  <div id="cart" class="cart hidden">
+        <h3>Shopping Cart</h3>
+        <div id="cart-items"></div>
+        <p id="cart-total">Total: ₱0.00</p>
+        <button id="buy-now">Buy Now</button>
+    </div>
+
+        <script src="cart.js" defer></script>
+<script>
+   // Check if user is logged in
+  if (!localStorage.getItem('userId') || !localStorage.getItem('username')) {
+    alert('Please login first.');
+    window.location.href = 'login.html';
+  }
+
+  // Prevent back button navigation to cached protected pages after logout
+  window.history.pushState(null, '', window.location.href);
+  window.onpopstate = () => {
+    // When back button is pressed, push state again
+    window.history.pushState(null, '', window.location.href);
+
+    // Additionally, force login check again
+    if (!localStorage.getItem('userId') || !localStorage.getItem('username')) {
+      alert('Please login first.');
+      window.location.href = 'login.html';
+    }
+  };
+</script>
+</body>
+</html>

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+  <meta http-equiv="Pragma" content="no-cache" />
+  <meta http-equiv="Expires" content="0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TokMarket - eCommerce</title>
+  <link rel="stylesheet" href="style.css" />
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+  />
+  <style>
+    h1,
+    p {
+      text-align: center;
+    }
+    
+  </style>
+</head>
+<body>
+  <header>
+    <h1 class="logo">TokMarket</h1>
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="categories.html">Categories</a></li>
+        <li><a href="profile.html">Profile</a></li>
+        <li>
+          <i
+            id="cart-icon"
+            class="fa-solid fa-cart-shopping"
+            style="cursor: pointer"
+          ></i>
+        </li>
+      </ul>
+    </nav>
+  </header>
+
+  <h1>User Profile</h1>
+  <p>
+    Your username is:
+    <span id="username">Loading...</span>
+  </p>
+  <button id="logout-btn" style="display: block; margin: 0 auto">Logout</button>
+
+  <div id="cart" class="cart hidden">
+    <h3>Shopping Cart</h3>
+    <div id="cart-items"></div>
+    <p id="cart-total">Total: ₱0.00</p>
+    <button id="buy-now">Buy Now</button>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script>
+    const SUPABASE_URL = "https://hitvxuwbqhlrpqekubva.supabase.co";
+    const SUPABASE_ANON_KEY =
+      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImhpdHZ4dXdicWhscnBxZWt1YnZhIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDYyNDU1MzIsImV4cCI6MjA2MTgyMTUzMn0.tcUQhLDO8wM3qZd21QYDd_6F1-HTPOyQmVdcdYZX0Iw";
+
+    const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+    document.addEventListener("DOMContentLoaded", async () => {
+      const storedUsername = localStorage.getItem("username");
+
+      if (!storedUsername) {
+        // No user logged in, redirect immediately and replace history
+        window.location.replace("login.html");
+        return;
+      }
+
+      // Optional: verify username from database again
+      const { data, error } = await supabase
+        .from("users")
+        .select("username")
+        .eq("username", storedUsername)
+        .single();
+
+      if (error || !data) {
+        document.getElementById("username").textContent = "Error fetching user";
+        console.error(error);
+        return;
+      }
+
+      document.getElementById("username").textContent = data.username;
+    });
+
+    document.getElementById("logout-btn").addEventListener("click", () => {
+      localStorage.removeItem("username");
+      localStorage.removeItem("userId");
+      window.location.replace("login.html"); // Use replace here to prevent back button
+    });
+  </script>
+  <script src="cart.js" defer></script>
+</body>
+</html>

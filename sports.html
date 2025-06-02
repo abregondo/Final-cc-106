@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TokMarket - eCommerce</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+</head>
+<body>
+    <header>
+        <h1 class="logo">TokMarket</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="categories.html">Categories</a></li>
+                <li><a href="profile.html">Profile</a></li>
+                <li><i id="cart-icon" class="fa-solid fa-cart-shopping" style="cursor:pointer;"></i></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="category-page">
+        <h2>Sports</h2>
+        <div id="product-grid" class="product-grid"></div>
+    </section>
+
+  <div id="cart" class="cart hidden">
+        <h3>Shopping Cart</h3>
+        <div id="cart-items"></div>
+        <p id="cart-total">Total: ₱0.00</p>
+        <button id="buy-now">Buy Now</button>
+    </div>
+
+    <script>
+        // Initialize Supabase
+        const supabaseUrl = 'https://hitvxuwbqhlrpqekubva.supabase.co';
+        const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImhpdHZ4dXdicWhscnBxZWt1YnZhIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDYyNDU1MzIsImV4cCI6MjA2MTgyMTUzMn0.tcUQhLDO8wM3qZd21QYDd_6F1-HTPOyQmVdcdYZX0Iw';  // Replace with your anon key
+        const supabaseClient = supabase.createClient(supabaseUrl, supabaseKey);
+
+        document.addEventListener('DOMContentLoaded', async () => {
+            const productGrid = document.getElementById('product-grid');
+
+            const { data: products, error } = await supabaseClient
+                .from('products')
+                .select('*')
+                .eq('categories_id', 4);
+
+            if (error) {
+                console.error('Error fetching products:', error.message);
+                productGrid.innerHTML = `<p>Failed to load products.</p>`;
+                return;
+            }
+
+            if (!products || products.length === 0) {
+                productGrid.innerHTML = `<p>No clothing products found.</p>`;
+                return;
+            }
+
+            products.forEach(product => {
+                const productDiv = document.createElement('div');
+                productDiv.classList.add('product');
+                productDiv.dataset.name = product.name;
+                productDiv.dataset.price = product.price;
+
+                productDiv.innerHTML = `
+                    <img src="${product.image_url}" alt="${product.name}">
+                    <h3>${product.name}</h3>
+                    <p class="price">₱${product.price}</p>
+                    <button class="add-to-cart">Add to Cart</button>
+                `;
+
+                productGrid.appendChild(productDiv);
+            });
+        });
+
+         // Check if user is logged in
+  if (!localStorage.getItem('userId') || !localStorage.getItem('username')) {
+    alert('Please login first.');
+    window.location.href = 'login.html';
+  }
+
+  // Prevent back button navigation to cached protected pages after logout
+  window.history.pushState(null, '', window.location.href);
+  window.onpopstate = () => {
+    // When back button is pressed, push state again
+    window.history.pushState(null, '', window.location.href);
+
+    // Additionally, force login check again
+    if (!localStorage.getItem('userId') || !localStorage.getItem('username')) {
+      alert('Please login first.');
+      window.location.href = 'login.html';
+    }
+  };
+    </script>
+        <script src="cart.js" defer></script>
+
+</body>
+</html>

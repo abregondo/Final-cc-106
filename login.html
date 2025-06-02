@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Login</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <style>
+  body {
+    background: linear-gradient(to right, #a4d3ff, #dcdada);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 15px;
+  }
+
+  .login-container {
+    width: 100%;
+    max-width: 400px;
+    padding: 30px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  }
+
+  h3 {
+    font-size: 1.5rem;
+  }
+
+  @media (max-width: 576px) {
+    .login-container {
+      padding: 20px;
+    }
+
+    h3 {
+      font-size: 1.25rem;
+    }
+
+    .btn {
+      font-size: 1rem;
+    }
+  }
+</style>
+
+</head>
+<body>
+  <div class="login-container">
+    <h3 class="mb-4 text-center">User Login</h3>
+    <form id="loginForm">
+      <div class="mb-3">
+        <label for="username" class="form-label">Username</label>
+        <input type="text" class="form-control" id="username" required />
+      </div>
+      <div class="mb-3">
+        <label for="password" class="form-label">Password</label>
+        <input type="password" class="form-control" id="password" required />
+      </div>
+      <button type="submit" class="btn btn-primary w-100">Login</button>
+    </form>
+    <p class="mt-3 text-center">
+      Don't have an account?
+      <a href="signup.html">Sign up here</a>
+    </p>
+  </div>
+
+  <script type="module">
+    import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm';
+
+    const supabase = createClient(
+      'https://hitvxuwbqhlrpqekubva.supabase.co',
+      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImhpdHZ4dXdicWhscnBxZWt1YnZhIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDYyNDU1MzIsImV4cCI6MjA2MTgyMTUzMn0.tcUQhLDO8wM3qZd21QYDd_6F1-HTPOyQmVdcdYZX0Iw'
+    );
+
+    document.getElementById('loginForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      const username = document.getElementById('username').value;
+      const password = document.getElementById('password').value;
+
+      const { data, error } = await supabase
+        .from('users')
+        .select('*')
+        .eq('username', username)
+        .eq('password', password)
+        .maybeSingle();  
+
+      if (error) {
+        alert('Error: ' + error.message);
+        console.error(error);
+        return;
+      }
+
+      if (!data) {
+        alert('Invalid username or password.');
+        return;
+      }
+
+      // Login successful
+      localStorage.setItem('userId', data.id);
+      localStorage.setItem('username', data.username);
+      window.location.href = 'index.html'; // Redirect to home page
+    });
+  </script>
+</body>
+</html>

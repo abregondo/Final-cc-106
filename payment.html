@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Payment Method</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #fefefe;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    .payment-box {
+      width: 400px;
+      border: 2px solid #ccc;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      background: #fff;
+    }
+
+    /* Header container: Back button + heading on the same line */
+    .header-container {
+      display: flex;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+
+    #back-button {
+      background-color: #555;
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      padding: 8px 14px;
+      cursor: pointer;
+      font-size: 1rem;
+      margin-right: 15px;
+    }
+
+    #back-button:hover {
+      background-color: #333;
+    }
+
+    h2 {
+      margin: 0;
+      font-weight: 600;
+      font-size: 1.5rem;
+      flex-grow: 1;
+    }
+
+    ul {
+      list-style-type: none;
+      padding: 0;
+      margin-bottom: 20px;
+      text-align: left;
+    }
+
+    li {
+      margin-bottom: 10px;
+    }
+
+    .total {
+      font-weight: bold;
+      margin-bottom: 20px;
+    }
+
+    .payment-options {
+      margin-bottom: 20px;
+      text-align: left;
+    }
+
+    button#confirm-pay {
+      background-color: #e53935;
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      padding: 12px 20px;
+      width: 100%;
+      font-size: 1rem;
+      cursor: pointer;
+    }
+
+    button#confirm-pay:hover {
+      background-color: #c62828;
+    }
+  </style>
+</head>
+<body>
+
+<div class="payment-box">
+
+  <div class="header-container">
+    <button id="back-button">Back</button>
+    <h2>Payment Method</h2>
+  </div>
+
+  <ul id="cart-items"></ul>
+  <div class="total">Total: ₱<span id="total-price">0.00</span></div>
+
+  <div class="payment-options">
+    <label><input type="radio" name="payment" checked> Cash on Delivery</label><br />
+    <label><input type="radio" name="payment"> GCash</label><br />
+    <label><input type="radio" name="payment"> Bank Transfer</label>
+  </div>
+
+  <button id="confirm-pay">Confirm Payment</button>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const cart = JSON.parse(localStorage.getItem("cart")) || [];
+    const cartList = document.getElementById("cart-items");
+    const totalEl = document.getElementById("total-price");
+
+    let total = 0;
+
+    cart.forEach(item => {
+      const li = document.createElement("li");
+      const subtotal = item.price * item.quantity;
+      total += subtotal;
+      li.textContent = `${item.name} (x${item.quantity}) - ₱${subtotal.toFixed(2)}`;
+      cartList.appendChild(li);
+    });
+
+    totalEl.textContent = total.toFixed(2);
+
+    document.getElementById("confirm-pay").addEventListener("click", () => {
+      alert("Payment successful!");
+      localStorage.removeItem("cart");
+      window.location.href = "thankyou.html";
+    });
+
+    document.getElementById("back-button").addEventListener("click", () => {
+      history.back();
+    });
+  });
+</script>
+
+</body>
+</html>

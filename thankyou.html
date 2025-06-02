@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Thank You - TokMarket</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #fff0f5;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      color: #ff3366;
+    }
+    .thankyou-container {
+      text-align: center;
+      border: 2px solid #ff3366;
+      padding: 3rem 4rem;
+      border-radius: 15px;
+      box-shadow: 0 4px 15px rgba(255, 51, 102, 0.3);
+      background-color: #fff;
+      max-width: 400px;
+    }
+    h1 {
+      margin-bottom: 1rem;
+      font-size: 2.5rem;
+    }
+    p {
+      font-size: 1.2rem;
+      margin-bottom: 2rem;
+    }
+    button {
+      background-color: #ff3366;
+      color: white;
+      border: none;
+      padding: 0.75rem 1.5rem;
+      font-size: 1rem;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    button:hover {
+      background-color: #cc2a58;
+    }
+  </style>
+</head>
+<body>
+  <div class="thankyou-container">
+    <h1>Thank You!</h1>
+    <p>Your payment has been successfully processed.</p>
+    <button id="btn-home">Back to Home</button>
+  </div>
+
+  <script>
+    document.getElementById('btn-home').addEventListener('click', () => {
+      window.location.href = 'index.html'; 
+    });
+  </script>
+</body>
+</html>

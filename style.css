@@ -1,0 +1,643 @@
+/* styles.css */
+body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    background: #f5f5f5;
+    color: #333;
+    overflow-x: hidden;
+}
+header {
+    width: 100%;
+    background: linear-gradient(90deg, #2c3e50, #34495e);
+    color: white;
+    padding: 10px 20px; /* smaller padding = smaller height */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-sizing: border-box;
+    overflow-x: visible;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+
+
+.logo {
+    font-size: 1.8rem;
+    font-weight: bold;
+}
+
+
+#logout-btn {
+    width: auto;         
+    margin-top:-2px;       
+    padding: 8px 14px;    
+    background: none;     
+    border: none;
+    color: white;
+    font-size: 1.1rem;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 4px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.2s ease;
+}
+
+#logout-btn:hover {
+    background: darkred;  
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    gap: 10px;
+    align-items: center; 
+}
+
+nav ul li a,
+nav ul li i {
+    color: white;
+    font-size: 1.1rem;
+    font-weight: bold;
+    text-decoration: none;
+    cursor: pointer;
+    background: none;
+    border: none;
+    padding: 3px 14px;
+    line-height: 1.2;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px;
+    transition: background-color 0.2s ease;
+}
+
+nav ul li a:hover,
+nav ul li i:hover {
+    color: #ff6600;
+    background-color: #ffe6cc;
+}
+
+
+#cart-icon {
+    font-size: 1.8rem;
+    cursor: pointer;
+    color: white;
+    margin-right: 40px; /* Added space to the right */
+}
+
+
+.banner {
+    text-align: center;
+    background: #2980b9;
+    color: white;
+    padding: 40px 20px;
+}
+
+.products {
+    width: 80%;
+    text-align: center;
+    margin: 30px auto;
+}
+
+.product-grid {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.product {
+    border: 1px solid #ddd;
+    padding: 15px;
+    border-radius: 5px;
+    text-align: center;
+    width: 220px;
+    background: white;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.product img {
+    width: 120px;
+    height: 120px;
+    border-radius: 5px;
+}
+
+.price {
+    font-weight: bold;
+    color: #27ae60;
+}
+
+.add-to-cart {
+    background: #27ae60;
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    margin-top: 10px;
+    border-radius: 5px;
+}
+
+.cart {
+    position: fixed;
+    right: 10px;
+    top: 80px;
+    background: white;
+    padding: 20px;
+    border: 1px solid #ddd;
+    width: 220px;
+    display: none;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+.cart.hidden {
+    display: none;
+}
+
+.cart.visible {
+    display: block;
+}
+
+#buy-now {
+    background: red;
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    width: 100%;
+    margin-top: 10px;
+    border-radius: 5px;
+}
+
+/* Categories Page */
+.categories {
+    text-align: center;
+    padding: 40px;
+}
+
+.category-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 20px;
+    max-width: 800px;
+    margin: auto;
+}
+
+.category-box {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    text-decoration: none;
+    color: #333;
+    font-size: 1.2rem;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+    transition: 0.3s;
+}
+
+.category-box i {
+    font-size: 2rem;
+    color: #2980b9;
+}
+
+.category-box:hover {
+    transform: scale(1.05);
+    background: #f1f1f1;
+}
+
+/* Profile Page */
+.profile {
+    text-align: center;
+    padding: 40px;
+}
+
+.profile-info {
+    background: white;
+    padding: 20px;
+    max-width: 400px;
+    margin: auto;
+    border-radius: 10px;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.profile-img {
+    width: 100px;
+    border-radius: 50%;
+    margin-bottom: 10px;
+}
+
+#logout-btn {
+    background: red;
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    width: 10%;
+    margin-top: 10px;
+    border-radius: 5px;
+    transition: 0.3s;
+}
+
+#logout-btn:hover {
+    background: rgb(187, 173, 173);
+}
+
+/* style for login page */
+.login-container {
+    width: 300px;
+    margin: 100px auto;
+    padding: 20px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.login-container h2 {
+    margin-bottom: 10px;
+}
+
+.login-container input {
+    width: 90%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.login-container button {
+    width: 95%;
+    padding: 10px;
+    background: #2980b9;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-top: 10px;
+}
+
+.login-container button:hover {
+    background: #1f6692;
+}
+
+/* style for the payment */
+
+.payment-container {
+    width: 300px;
+    margin: 50px auto;
+    padding: 20px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.payment-container h2, h3 {
+    margin-bottom: 15px;
+}
+
+.payment-container ul {
+    list-style: none;
+    padding: 0;
+}
+
+.payment-container ul li {
+    padding: 5px;
+    border-bottom: 1px solid #ddd;
+}
+
+.payment-container button {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+#cod {
+    background: green;
+    color: white;
+}
+
+#online-payment {
+    background: blue;
+    color: white;
+}
+/* Extra Small Screens (0px to 299px)  */
+@media screen and (max-width: 299px) {
+  header {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    padding: 6px 8px;
+    gap: 6px;
+  }
+
+  .logo {
+    font-size: 1rem;
+    font-weight: bold;
+    flex: 1 1 100%;
+    text-align: center;
+  }
+
+  nav ul {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 4px;
+    flex: 1 1 100%;
+    padding: 0;
+    margin: 0;
+  }
+
+  nav ul li a,
+  nav ul li i {
+    font-size: 0.8rem;
+    padding: 4px 6px;
+  }
+
+  #cart-icon {
+    font-size: 1.3rem;
+    width: auto;
+    margin: 0 auto;
+  }
+
+  #logout-btn {
+    width: 100%;
+    font-size: 0.8rem;
+    padding: 6px 8px;
+    margin-top: 6px;
+    display: block;
+    text-align: center;
+  }
+
+  .product {
+    width: 95%;
+  }
+
+  .cart {
+    width: 90%;
+  }
+}
+
+
+/* Responsive: 300px to 379px */
+@media screen and (min-width: 300px) and (max-width: 379px) {
+  header {
+    flex-direction: column;
+    align-items: center;
+    padding: 8px 10px;
+    gap: 8px;
+  }
+
+  .logo {
+    font-size: 1.3rem;
+    font-weight: bold;
+    text-align: center;
+    width: 100%;
+  }
+
+  nav ul {
+    display: flex;
+    justify-content: center;
+    flex-wrap: nowrap;
+    gap: 8px;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+  }
+
+  nav ul li a,
+  nav ul li i {
+    font-size: 0.9rem;
+    padding: 4px 8px;
+  }
+
+  #cart-icon {
+    font-size: 1.6rem;
+    color: white;
+    cursor: pointer;
+    margin-top: 6px;
+    width: 100%;
+    text-align: center;
+  }
+
+  #logout-btn {
+    width: 90%;
+    font-size: 1rem;
+    padding: 8px 12px;
+    margin: 8px auto 0;
+    display: block;
+    text-align: center;
+  }
+
+  .product {
+    width: 90%;
+  }
+
+  .cart {
+    width: 90%;
+  }
+}
+
+/* Small Screens (max-width: 480px) */
+@media screen and (max-width: 480px) {
+  header {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 10px;
+  }
+
+  .logo {
+    font-size: 1.4rem;
+    margin-bottom: 8px;
+  }
+
+  nav ul {
+    flex-direction: row;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  nav ul li {
+    margin: 0;
+  }
+
+  #cart-icon {
+    font-size: 1.6rem;
+    margin: 10px 0 0;
+    display: block;
+  }
+
+  .product-grid {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .product {
+    width: 90%;
+  }
+
+  .cart {
+    width: 90%;
+    right: 5%;
+    top: 100px;
+  }
+
+  #logout-btn {
+    width: 90%;
+  }
+}
+
+/* Mid Screens (481px to 629px) */
+@media screen and (min-width: 481px) and (max-width: 629px) {
+  header {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 10px;
+  }
+
+  .logo {
+    font-size: 1.6rem;
+    margin-bottom: 8px;
+  }
+
+  nav ul {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+  }
+
+  nav ul li {
+    margin: 0;
+  }
+
+  #cart-icon {
+    font-size: 1.6rem;
+    margin-top: 10px;
+    display: block;
+  }
+
+  .product-grid {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+  }
+
+  .product {
+    width: 45%;
+  }
+
+  .cart {
+    width: 90%;
+    right: 5%;
+    top: 100px;
+  }
+
+  #logout-btn {
+    width: 90%;
+  }
+}
+
+/* Tablets (630px to 768px) */
+@media screen and (min-width: 630px) and (max-width: 768px) {
+  header {
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 10px 20px;
+  }
+
+  .logo {
+    font-size: 1.8rem;
+  }
+
+  nav ul {
+    flex-direction: row;
+    justify-content: center;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+
+  #cart-icon {
+    font-size: 1.8rem;
+    margin-right: 40px;
+    display: block;
+  }
+
+  .product-grid {
+    justify-content: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .product {
+    width: 23%;
+  }
+
+  .cart {
+    width: 200px;
+    right: 10px;
+  }
+
+  #logout-btn {
+    width: auto;
+  }
+}
+
+/* Small Desktops (769px to 1024px) */
+@media screen and (min-width: 769px) and (max-width: 1024px) {
+  .product-grid {
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .product {
+    width: 23%;
+  }
+
+  .cart {
+    width: 220px;
+  }
+
+  nav ul {
+    gap: 15px;
+  }
+
+  #cart-icon {
+    display: block;
+  }
+}
+
+/* Large screens (1025px and above) */
+@media screen and (min-width: 1025px) {
+  .product-grid {
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .product {
+    width: 23%;
+  }
+
+  .cart {
+    width: 250px;
+  }
+}
